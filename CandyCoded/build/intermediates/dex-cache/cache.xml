@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/sarah/Documents/SuperSweetAndroidTime-CandyCodedSampleApp/CandyCoded/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/sarah/Documents/SuperSweetAndroidTime-CandyCodedSampleApp/CandyCoded/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_d7ce6eec8381547ee6fd5bb9cf4f458963ac633b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/sarah/Documents/SuperSweetAndroidTime-CandyCodedSampleApp/CandyCoded/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f9a03d63469e2d6db376f6d320d4ea77d49cc069">
+        <dex dex="/Users/sarah/Documents/SuperSweetAndroidTime-CandyCodedSampleApp/CandyCoded/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_796324110844933cb5f656b3eeab122a15f5c6a0/classes.dex" />
+    </item>
+
+</items>
