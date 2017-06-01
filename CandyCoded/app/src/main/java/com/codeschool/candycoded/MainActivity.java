@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,7 +12,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.TextHttpResponseHandler;
+
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView)this.findViewById(R.id.text_view_title);
         textView.setText(R.string.products_title);
 
-        ArrayList<String> candy_list = new ArrayList<String>();
+        final ArrayList<String> candy_list = new ArrayList<String>();
 
         candy_list.add("Tropical Wave");
         candy_list.add("Berry Bouncer");
@@ -62,8 +68,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent detailIntent = new Intent(MainActivity.this, DetailActivity.class);
+                detailIntent.putExtra("candy_name", candy_list.get(i));
                 startActivity(detailIntent);
             }
         });
+
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get("https://vast-brushlands-23089.herokuapp.com/main/api",
+                new TextHttpResponseHandler() {
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String response, Throwable throwable) {
+                        Log.e("AsyncHttpClient", "response = " + response);
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String response) {
+                        Log.d("AsyncHttpClient", "response = " + response);
+                    }
+                });
     }
 }
