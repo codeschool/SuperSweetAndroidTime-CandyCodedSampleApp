@@ -60,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast newToast = Toast.makeText(MainActivity.this, ""+i, Toast.LENGTH_SHORT);
-                newToast.show();
+                
             }
         });
     }
