@@ -1,7 +1,9 @@
 package com.codeschool.candycoded;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -11,18 +13,22 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import cz.msebera.android.httpclient.Header;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 
-import java.util.ArrayList;
+import com.codeschool.candycoded.CandyContract.CandyEntry;
 
-import cz.msebera.android.httpclient.Header;
+
 
 public class MainActivity extends AppCompatActivity {
     private Candy[] candies;
+    private CandyDbHelper candyDbHelper = new CandyDbHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +88,23 @@ public class MainActivity extends AppCompatActivity {
                         for(Candy candy : candies) {
                             adapter.add(candy.name);
                         }
+
+                        addCandiesToDatabase(candies);
                     }
                 });
+    }
+
+    private void addCandiesToDatabase(Candy[] candies) {
+        SQLiteDatabase db = candyDbHelper.getWritableDatabase();
+
+        for (Candy candy : candies) {
+            ContentValues values = new ContentValues();
+            values.put(CandyEntry.COLUMN_NAME_NAME, candy.name);
+            values.put(CandyEntry.COLUMN_NAME_PRICE, candy.price);
+            values.put(CandyEntry.COLUMN_NAME_DESC, candy.description);
+            values.put(CandyEntry.COLUMN_NAME_IMAGE, candy.image);
+
+            db.insert(CandyEntry.TABLE_NAME, null, values);
+        }
     }
 }

@@ -11,7 +11,7 @@ public class CandyContract {
                     CandyEntry._ID + " INTEGER PRIMARY KEY," +
                     CandyEntry.COLUMN_NAME_NAME + " TEXT," +
                     CandyEntry.COLUMN_NAME_PRICE + " TEXT," +
-                    CandyEntry.COLUMN_NAME_DESCRIPTION + " TEXT," +
+                    CandyEntry.COLUMN_NAME_DESC + " TEXT," +
                     CandyEntry.COLUMN_NAME_IMAGE + " TEXT)";
 
     public static final String SQL_DELETE_ENTRIES =
@@ -21,7 +21,7 @@ public class CandyContract {
         public static final String TABLE_NAME = "candy";
         public static final String COLUMN_NAME_NAME = "name";
         public static final String COLUMN_NAME_PRICE = "price";
-        public static final String COLUMN_NAME_DESCRIPTION = "description";
+        public static final String COLUMN_NAME_DESC = "description";
         public static final String COLUMN_NAME_IMAGE = "image";
     }
 }
