@@ -3,6 +3,7 @@ package com.codeschool.candycoded;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -38,16 +39,10 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView)this.findViewById(R.id.text_view_title);
         textView.setText(R.string.products_title);
 
-        final ArrayList<String> candy_list = new ArrayList<String>();
+        SQLiteDatabase db = candyDbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM candy", null);
 
-        candy_list.add("Tropical Wave");
-
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this,
-                R.layout.list_item_candy,
-                R.id.text_view_candy,
-                candy_list
-        );
+        final CandyCursorAdapter adapter = new CandyCursorAdapter(this, cursor);
 
         ListView listView = (ListView)this.findViewById(R.id.list_view_candy);
 
@@ -63,10 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent detailIntent = new Intent(MainActivity.this, DetailActivity.class);
-                detailIntent.putExtra("candy_name", candies[i].name);
-                detailIntent.putExtra("candy_image", candies[i].image);
-                detailIntent.putExtra("candy_price", candies[i].price);
-                detailIntent.putExtra("candy_desc", candies[i].description);
+                detailIntent.putExtra("position", i);
                 startActivity(detailIntent);
             }
         });
@@ -84,12 +76,12 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("AsyncHttpClient", "response = " + response);
                         Gson gson = new GsonBuilder().create();;
                         candies = gson.fromJson(response, Candy[].class);
-                        adapter.clear();
-                        for(Candy candy : candies) {
-                            adapter.add(candy.name);
-                        }
 
                         addCandiesToDatabase(candies);
+
+                        SQLiteDatabase db = candyDbHelper.getWritableDatabase();
+                        Cursor cursor = db.rawQuery("SELECT * FROM candy", null);
+                        adapter.changeCursor(cursor);
                     }
                 });
     }
