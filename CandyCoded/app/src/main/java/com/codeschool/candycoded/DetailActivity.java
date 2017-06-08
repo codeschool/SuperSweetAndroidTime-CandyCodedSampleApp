@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -41,5 +44,9 @@ public class DetailActivity extends AppCompatActivity {
         }
         TextView textViewDesc = (TextView)this.findViewById(R.id.text_view_desc);
         textViewDesc.setText(candy_desc);
+
+        ImageView imageView = (ImageView)this.findViewById(
+                R.id.image_view_candy);
+        Picasso.with(this).load(candy_image).into(imageView);
     }
 }
