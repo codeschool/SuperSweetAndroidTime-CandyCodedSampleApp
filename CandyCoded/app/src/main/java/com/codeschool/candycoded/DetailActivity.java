@@ -32,13 +32,14 @@ public class DetailActivity extends AppCompatActivity {
         if (intent.hasExtra("candy_price")) {
             candy_price = intent.getStringExtra("candy_price");
         }
+        TextView textViewPrice = (TextView)this.findViewById(R.id.text_view_price);
+        textViewPrice.setText(candy_price);
 
         String candy_desc = "";
         if (intent.hasExtra("candy_desc")) {
             candy_desc = intent.getStringExtra("candy_desc");
         }
-
-        Log.d("DetailActivity", "Intent data: " + candy_image + ", " +
-                candy_price + ", " + candy_desc);
+        TextView textViewDesc = (TextView)this.findViewById(R.id.text_view_desc);
+        textViewDesc.setText(candy_desc);
     }
 }
