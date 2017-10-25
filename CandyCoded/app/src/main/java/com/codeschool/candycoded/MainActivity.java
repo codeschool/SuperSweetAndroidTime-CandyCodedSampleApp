@@ -10,20 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.ArrayList;
 
+import com.codeschool.candycoded.CandyContract.CandyEntry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import cz.msebera.android.httpclient.Header;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 
-import com.codeschool.candycoded.CandyContract.CandyEntry;
+import cz.msebera.android.httpclient.Header;
 
 
 
@@ -64,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("https://vast-brushlands-23089.herokuapp.com/main/api",
+        client.get("https://s3.amazonaws.com/courseware.codeschool.com/super_sweet_android_time/API/CandyCoded.json",
                 new TextHttpResponseHandler() {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, String response, Throwable throwable) {
