@@ -10,20 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.ArrayList;
 
+import com.codeschool.candycoded.CandyContract.CandyEntry;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import cz.msebera.android.httpclient.Header;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 
-import com.codeschool.candycoded.CandyContract.CandyEntry;
+import cz.msebera.android.httpclient.Header;
 
 
 
