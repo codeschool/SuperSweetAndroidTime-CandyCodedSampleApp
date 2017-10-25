@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get("https://vast-brushlands-23089.herokuapp.com/main/api",
+        client.get("https://s3.amazonaws.com/courseware.codeschool.com/super_sweet_android_time/API/CandyCoded.json",
                 new TextHttpResponseHandler() {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, String response, Throwable throwable) {
