@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
     private void addCandiesToDatabase(Candy[] candies) {
         SQLiteDatabase db = candyDbHelper.getWritableDatabase();
 
+        if (candies == null) return;
+        else db.delete(CandyEntry.TABLE_NAME, null, null);
+
         for (Candy candy : candies) {
             ContentValues values = new ContentValues();
             values.put(CandyEntry.COLUMN_NAME_NAME, candy.name);
